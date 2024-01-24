@@ -11,10 +11,10 @@ import time
 
 
 
-# ironmq = IronMQ(host='mq-aws-us-east-1-1.iron.io',
-#                 project_id='500f7b....b0f302e9',
-#                 token='Et1En7.....0LuW39Q',
-#                 protocol='https', port=443,
+# ironmq = IronMQ(host='hostname',
+#                 project_id='id',
+#                 token='token',
+#                 protocol='https', port='port',
 #                 api_version=3,
 #                 config_file=None)
 
