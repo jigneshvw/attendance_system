@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- for Internet IE Explore new elements are render like HTML 5. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="YES" name="apple-touch-fullscreen">
+
+    <!-- for apple mobile capable -->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+
+
+    <title>Face Recognition for Attendance System</title>
+
+    <link href="" rel="canonical">
+    <meta name="robots" content="index , follow , All">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link href="static/css/main.css" type="text/css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+
+</head>
+
+<body>
+    <script src="static/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="static/js/handlebars.min-v4.5.3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/platform.min.js" type="text/javascript"></script>
+    <script src="static/js/main.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- <script src="{{url_for('static', filename='js/jquery-2.2.0.min.js')}}" type="text/javascript"></script>
+    <script src="{{url_for('static', filename='js/handlebars.min-v4.5.3.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{url_for('static', filename='js/platform.min.js')}}" type="text/javascript"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}" type="text/javascript" charset="utf-8"></script> -->
+
+
+    <div id="mainContainer" class="mainContainer">
+        <header class="header">
+            <div class="container">Face Recognition for Attendance System</div>
+        </header>
+
+        <div class="sidenavblock">
+            <ul class="sidenav">
+                <li id="getemp">Get Employee Data</li>
+                <li id="addemp">Add New Employee</li>
+                <li id="delemp">Delete Employee</li>
+                <li id="listemp">Get All Employees List</li>
+                <li id="lastfiveemp">Get last 5 Employees list</li>
+            </ul>
+        </div>
+
+        <img id="pyfeedImg" src="{{ url_for('video_feed') }}">
+
+        <div class="body-container main">
+            <div class="fade-bg1"></div>
+            <div class="container">
+                <div class="message-dv-section empOperations" id="set_3">
+                    <div class="message-dv">
+                        <div class="message-dv-text-hol text">
+                            <h1 class="block-title">Get Employee data</h1>
+                            <div class="mtop30">
+                                <p class="mtop20">Enter Employee name to get record</p>
+                                <div class="input-container">
+                                    <input type="text" placeholder="Name here" required class="form-actions-text-input"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="mtop10"><button type="submit" class="form-actions-button submit"><span>Get
+                                        Employee data</span></button></div>
+                            <div id="getEmpStatus" class="statusBox"></div>
+                            <div class="mtop30">
+                                <div id="empDataHolder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-dv-section empOperations" id="set_1">
+                    <div class="message-dv">
+                        <div class="message-dv-text-hol text">
+                            <h1 class="block-title">Get all Employees list</h1>
+                            <div class="mtop30">
+                                <div class="mtop10"><button type="submit" class="form-actions-button submit"><span>Get
+                                            Employees list</span></button></div>
+
+                                <div class="mtop30">
+                                    <div id="empListHolder"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-dv-section empOperations" id="set_0">
+                    <div class="message-dv">
+                        <div class="message-dv-text-hol text">
+                            <h1 class="block-title">Delete Employee</h1>
+                            <div class=""><button type="submit"
+                                class="form-actions-button startDel submit" style="border-radius: 0;margin: 1px;"><span>Click here to delete an employee</span></button></div>
+                            <div class="mtop30 empDelBlock" style="display:none;">
+                                <p class="mtop20">Enter Employee name to delete</p>
+                                <div class="input-container">
+                                    <input type="text" placeholder="Name here" required class="form-actions-text-input"
+                                        autocomplete="off">
+                                </div>
+                                <div class="mtop30"><button type="submit" class="form-actions-button submit"><span>Delete Employee</span></button></div>                                        
+                            <div id="delEmpStatus" class="statusBox"></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-dv-section empOperations" id="set_2">
+                    <div class="message-dv">
+                        <div class="message-dv-text-hol text">
+                            <h1 class="block-title">Get last 5 Employees list</h1>
+                            <div class="mtop30">
+                                <div class="mtop30"><button type="submit" class="form-actions-button submit"><span>Get
+                                            last 5 Employees list</span></button></div>
+
+                                <div class="mtop30">
+                                    <div id="empFiveListHolder"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-dv-section empOperations" id="set_4">
+                    <div class="message-dv">
+                        <div class="message-dv-text-hol text">
+                            <h1 class="block-title">Add Employee data</h1>
+                            <div class=""><button type="submit"
+                                    class="form-actions-button startAdd submit" style="border-radius: 0;margin: 1px;"><span>Click here to add new employee</span></button></div>
+                            <div class="mtop30 empAddBlock" style="float: left;width: 100%;display: none;">
+                                <div class="addBlockLeft" style="display: inline-block;width: 50%;">
+                                    <p class="mtop20">Enter name to add new Employee</p>
+                                    <div class="input-container">
+                                        <input type="text" placeholder="Name here" required class="form-actions-text-input" autocomplete="off">
+                                    </div>
+                                    <div class="mtop10"><button type="submit"
+                                            class="form-actions-button submit"><span>Click to capture an image</span></button></div>
+                                    <div id="addEmpStatus" class="statusBox"></div>
+                                </div>
+                                <div class="addBlockRight" style="float: right;">
+                                    <div class="mtop10"></div>
+                                    <img src='' id="imgUser" alt="employee image"></img>
+                                    <!-- <video id="imgVideo" autoplay></video>  
+                                        <canvas id="imgCanvas"></canvas> 
+                                        <button type="submit" class="form-actions-button imgCapture"><span>Capture Image</span></button>-->
+                                </div>
+                            </div>
+
+                            <div class="mtop30">
+                                <div id="empDataHolder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="loader" class="loader"><img src="static/images/preloader.gif" width="auto" height="auto"
+                    alt="loader">
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    {% raw %}
+
+    <script id="entry-template-empList" type="text/x-handlebars-template">
+        <div class="empBlock-container">
+        {{#each this}}
+        <div class="empBlock-div-hol">
+            <!-- <span class="empBlock-txt">{{id}}</span> -->
+            <div class="empBlock-div"><img class="empBlock-div-img" src="{{this.dispImgPath}}" alt="{{empName}}"></div>
+            <span class="empBlock-txt">{{empName}}</span>
+        </div>        
+        {{/each}}
+        <div class="clearfix"></div>
+    </div>    
+      </script>
+
+
+    <script id="entry-template-empData" type="text/x-handlebars-template">
+        <div class="empBlock-container" style="margin: 10px; padding: 10px;border-width: 0 0 0 0;border-style: solid;border-color: #ccddee;">
+            <div class="empBlock-div-hol" style="max-width:50%;float: left;">
+                <!-- <span class="empBlock-txt">{{id}}</span> -->
+                <div class="empBlock-div" style="float:left;"><img class="empBlock-div-img" src="{{dispImgPath}}" alt="{{empName}}"></div>
+                <div style="float:left;margin-left: 20px;">
+                    <span class="empBlock-txt"><h2 style="font-weight: normal;text-align: left;">{{empName}}</h2></span>
+                    <span class="empBlock-txt"><h4 style="text-align: left;">{{date}}</h4></span>
+                </div>
+            </div>
+            <div>
+                <div style="float:left;">
+                    <div class="empBlock-div"><img class="empBlock-div-img" src="{{inTimeImgPath}}" alt="in-time"></div>
+                    <span class="empBlock-txt">In-time: {{inTime}}</span>
+                </div>
+                <div style="float:left;margin-left: 20px;">
+                    <div class="empBlock-div"><img class="empBlock-div-img" src="{{outTimeImgPath}}" alt="out-time"></div>
+                    <span class="empBlock-txt">Out-time: {{outTime}}</span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </script>
+
+    <script id="entry-template-empFiveList" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="empBlock-container" style="margin: 10px; padding: 10px;border-width: 0 0 2px 0;border-style: solid;border-color: #ccddee;">
+            <div class="empBlock-div-hol" style="max-width:50%;float: left;">
+                <!-- <span class="empBlock-txt">{{id}}</span> -->
+                <div class="empBlock-div" style="float:left;"><img class="empBlock-div-img" src="{{dispImgPath}}" alt="{{empName}}"></div>
+                <div style="float:left;margin-left: 20px;">
+                    <span class="empBlock-txt"><h2 style="font-weight: normal;text-align: left;">{{empName}}</h2></span>
+                    <span class="empBlock-txt"><h4 style="text-align: left;">{{date}}</h4></span>
+                </div>
+            </div>
+            <div>
+                <div style="float:left;">
+                    <div class="empBlock-div"><img class="empBlock-div-img" src="{{inTimeImgPath}}" alt="in-time"></div>
+                    <span class="empBlock-txt">In-time: {{inTime}}</span>
+                </div>
+                <div style="float:left;margin-left: 20px;">
+                    <div class="empBlock-div"><img class="empBlock-div-img" src="{{outTimeImgPath}}" alt="out-time"></div>
+                    <span class="empBlock-txt">Out-time: {{outTime}}</span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/each}}
+    </script>
+
+    {% endraw %}
+
+
+</body>
+
+</html>
