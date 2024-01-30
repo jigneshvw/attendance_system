@@ -83,3 +83,5 @@ entering the name (same name used while registering) of employee and submit it.
 
 • 11) Lastly, if we want to get the details of all Registered Employees at once, we can do it
 from the GUI.
+
+NOTE: For security purpose, the database and server details are removed from code and localhost url and other details are shown instead.
